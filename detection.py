@@ -39,7 +39,7 @@ def prediction(model_path,image_path, conf=0.5, savepath=None):
     # model.train(data="coco128.yaml", epochs=3)  # train the model
     # metrics = model.val()  # evaluate model performance on the validation set
     t1 = time.time()
-    results = model(image_path, conf=conf)  # predict on an image
+    results = model(image_path, imgsz=320, conf=conf)  # predict on an image
     t2 = time.time()
     print(f"Spend {(t2-t1)*1000} ms ")
     print(results[0].boxes)
@@ -75,7 +75,7 @@ def prediction(model_path,image_path, conf=0.5, savepath=None):
         img = cv2.rectangle(img, (int(bounding_box[0]),int(bounding_box[1])), (int(bounding_box[2]),int(bounding_box[3])),color,10)
 
         item_name = results[0].names[int(results[0].boxes.cpu().data[i][-1].item())]
-        img = cv2.putText(img, item_name, (int(bounding_box[0]),int(bounding_box[1])), cv2.FONT_HERSHEY_COMPLEX, 1, color, 10)
+        # img = cv2.putText(img, item_name, (int(bounding_box[0]),int(bounding_box[1])), cv2.FONT_HERSHEY_COMPLEX, 1, color, 10)
 
         if item_name in result_static:
             result_static[item_name] += 1
@@ -84,16 +84,16 @@ def prediction(model_path,image_path, conf=0.5, savepath=None):
 
     # num = len(results[0].boxes.xyxy.cpu())
     # class_result = results[0].names[int(results[0].boxes.cpu().data[i][-1].item())]
-    img = cv2.putText(img, f"; ".join([f"{k}: {v}" for k,v in result_static.items()]), (10,100), cv2.FONT_HERSHEY_COMPLEX, 1.5, (64,224,208), 10)
+    # img = cv2.putText(img, f"; ".join([f"{k}: {v}" for k,v in result_static.items()]), (10,100), cv2.FONT_HERSHEY_COMPLEX, 1.5, (64,224,208), 10)
     print(result_static)
     cv2.imshow("result", img)
     cv2.waitKey()
     img_name = ".".join(image_path.split("\\")[-1].split(".")[:-1]) 
 
-    # if savepath!=None:
-    #     cv2.imwrite(savepath,img)
-    # else:
-    #     cv2.imwrite(f"{img_name}_result.png",img)
+    if savepath!=None:
+        cv2.imwrite(savepath,img)
+    else:
+        cv2.imwrite(f"{img_name}_result.png",img)
 
 def is_image_file(file_name):
     if file_name.split(".")[-1] == "JPG" or file_name.split(".")[-1] == "jpg" or file_name.split(".")[-1] == "JPEG" or file_name.split(".")[-1] == "tif":
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     # prediction_test()
     # prediction("runs\\detect\\train\\weights\\best.pt", "F:\\nematoda\\nemadote_detection\\images\\train\\img_5010_id246.jpg")
 
-    # prediction("runs\\nematodes_medium_21_10\\weights\\best.torchscript", "F:\\nematoda\\AgriNema\\unannotated_data\\PCN_RLN_x5\\original_label\\Mixture_Image001_ch00.jpg")
+    prediction("runs\\nematodes_medium_21_10\\weights\\best.pt", "C:\\Users\\zhipeng\\Desktop\\Pratylenchus spp2\\Image001.jpg")
 
     # pathes = [
     #     "F:\\nematoda\\AgriNema\\unannotated_data\\PCN_RLN_x10",
@@ -133,4 +133,4 @@ if __name__ == "__main__":
     #     draw_results_from_folder("runs\\nematodes_tiny_21_10\\weights\\best.pt", path)
 
 
-    prediction("runs\\uk_pest_01JAN_tiny\\weights\\best.pt", "F:\\pest_data\\Multitask_or_multimodality\\YOLO_01JAN\\images\\train\\0x427f6f23741b9e8f.JPG")
+    # prediction("runs\\yolov8_320_uk_pest_dataset_07JAN25_all_insect_X2_tiny\\weights\\best_saved_model\\best_int8.tflite", "X:\\pervasive_group\\PestProject\\YOLO_07JAN25_ALL_INSECT_ZOOM_IN_2X\\images\\train\\001_000962.jpg")

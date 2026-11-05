@@ -262,9 +262,9 @@ if __name__ == "__main__":
 
     path = "F:\\pest_data\\Multitask_or_multimodality\\annotated_data"
 
-    # count_object_from_voc_label_folder(path)
+    count_object_from_voc_label_folder("F:\\pest_data\\Aphids_VOC2007\\Annotations")
     # select_sample(path, "C:\\Users\\zhipeng\\Desktop\\DataSample")
 
     # statistic_object_size("F:\\pest_data\\Multitask_or_multimodality\\YOLO_25JUN24_ALL_INSECT\\labels\\train")
 
-    draw_object_size_distribution("F:\\pest_data\\Multitask_or_multimodality\\YOLO_18SEP24_ALL_INSECTA\\labels\\train")
+    # draw_object_size_distribution("F:\\pest_data\\Multitask_or_multimodality\\YOLO_18SEP24_ALL_INSECTA\\labels\\train")

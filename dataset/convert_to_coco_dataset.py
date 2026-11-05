@@ -376,9 +376,9 @@ if __name__ == "__main__":
 
     # coco_folder = convert_voc_to_coco("F:\\nematoda\\AgriNema\\original_annotated_data", "F:\\nematoda\\AgriNema\\Formated_Dataset\\COCO_Dec24", split_ratio=1.0)
 
-    coco_folder = convert_voc_to_coco("F:\\pest_data\\Multitask_or_multimodality\\annotated_data", "X:\\pervasive_group\\PestProject\\COCO_07JAN25_ALL_INSECT", split_ratio=1.0)
+    # coco_folder = convert_voc_to_coco("F:\\pest_data\\Multitask_or_multimodality\\annotated_data", "X:\\pervasive_group\\PestProject\\COCO_07JAN25_ALL_INSECT", split_ratio=1.0)
 
-    select_coco_samples_based_yolo("X:\\pervasive_group\\PestProject\\COCO_07JAN25_ALL_INSECT", "X:\\pervasive_group\\PestProject\\YOLO_07JAN25_ALL_INSECT")
+    select_coco_samples_based_yolo("X:\\pervasive_group\\PestProject\\COCO_07JAN25_ALL_INSECT\\coco_pest_2025_01_09", "X:\\pervasive_group\\PestProject\\YOLO_07JAN25_ALL_INSECT")
 
     # correct_coco_annotation_file("F:\\nematoda\\AgriNema\\Formated_Dataset\\COCO_Dec24", "selectedVal-copy.json")
     """
