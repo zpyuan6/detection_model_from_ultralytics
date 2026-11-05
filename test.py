@@ -6,12 +6,12 @@ from ultralytics import YOLO
 # plt.imshow(sample)
 # plt.show()
 # model = YOLO('runs\\uk_pest_01JAN_tiny\\args.yaml')
-model = YOLO('runs\\uk_pest_01JAN_tiny\\weights\\best.pt')
+model = YOLO('runs\\detect\\yolov8n_320_aphid_4k\\weights\\best.pt')
 # model._load('runs\\uk_pest_01JAN_tiny\\weights\\best.pt')
 # model = YOLO()
 # 0x1c5c1c5d1d3d1d11
 # 0x1bff6fec30311
-results = model('F:\\pest_data\\Multitask_or_multimodality\\annotated_data\\0x1c5c1c5d1d3d1d11.JPG')
+results = model('C:\\Datasets\\APHID-4K-YOLO\\images\\val\\001_012845.jpg')
 
 for result in results:
     boxes = result.boxes  # Boxes object for bounding box outputs

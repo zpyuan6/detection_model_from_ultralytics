@@ -1,4 +1,4 @@
-path: /home/zhipeng/Desktop/nematodes/AgriNema/Yolo_11Dec/
+path: C:\Datasets\Yolo_11Dec
 train: images/train  # train images (relative to 'path') 128 images
 val:  images/val  # val images (relative to 'path') 128 images
 test: images/test  # test images (relative to 'path') 128 images

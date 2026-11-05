@@ -36,6 +36,10 @@ def crop_image_and_annotation(orginal_yolo_path, output_dir, scale=2.0, data_typ
                 # 初始化最小和最大边界
                 min_x, min_y, max_x, max_y = width, height, 0, 0
 
+                object_cluster_center_x_sum = 0
+                object_cluster_center_y_sum = 0
+                object_count = 0
+
                 for line in lines:
                     parts = line.strip().split()
                     if len(parts) < 5:
@@ -56,7 +60,13 @@ def crop_image_and_annotation(orginal_yolo_path, output_dir, scale=2.0, data_typ
                     max_x = max(max_x, x_center + obj_width / 2)
                     max_y = max(max_y, y_center + obj_height / 2)
 
+                    object_cluster_center_x_sum += x_center
+                    object_cluster_center_y_sum += y_center
+                    object_count += 1
                 
+
+                object_cluster_center_x = object_cluster_center_x_sum / object_count
+                object_cluster_center_y = object_cluster_center_y_sum / object_count 
 
                 # 计算扩展后的边界
                 if target_width < (max_x - min_x):
@@ -157,18 +167,18 @@ def draw_zoom_results(output_dir, data_type='val'):
                 plt.show()
 
 if __name__ == "__main__":
-    orginal_yolo_path = 'F:\\pest_data\\Multitask_or_multimodality\\YOLO_18SEP24_ALL_INSECTA'
-    output_dir = 'X:\\pervasive_group\\PestProject\\Dataset\\YOLO_18SEP24_ALL_INSECTA_ZOOM_IN_2X'
+    orginal_yolo_path = 'C:\\Datasets\\APHID-4K-YOLO'
+    output_dir = 'C:\\Datasets\\APHID-4K-YOLO_ZOOM_IN_2X'
     crop_image_and_annotation(orginal_yolo_path, output_dir, 2, 'train')
     crop_image_and_annotation(orginal_yolo_path, output_dir, 2, 'val')
     # draw_zoom_results(output_dir)
 
-    output_dir = 'X:\\pervasive_group\\PestProject\\Dataset\\YOLO_18SEP24_ALL_INSECTA_ZOOM_IN_3X'
-    crop_image_and_annotation(orginal_yolo_path, output_dir, 3, 'train')
-    crop_image_and_annotation(orginal_yolo_path, output_dir, 3, 'val')
-    # draw_zoom_results(output_dir)
+    # output_dir = 'X:\\pervasive_group\\PestProject\\Dataset\\YOLO_18SEP24_ALL_INSECTA_ZOOM_IN_3X'
+    # crop_image_and_annotation(orginal_yolo_path, output_dir, 3, 'train')
+    # crop_image_and_annotation(orginal_yolo_path, output_dir, 3, 'val')
+    # # draw_zoom_results(output_dir)
 
-    output_dir = 'X:\\pervasive_group\\PestProject\\Dataset\\YOLO_18SEP24_ALL_INSECTA_ZOOM_IN_4X'
-    crop_image_and_annotation(orginal_yolo_path, output_dir, 4, 'train')
-    crop_image_and_annotation(orginal_yolo_path, output_dir, 4, 'val')
-    # draw_zoom_results(output_dir)
+    # output_dir = 'X:\\pervasive_group\\PestProject\\Dataset\\YOLO_18SEP24_ALL_INSECTA_ZOOM_IN_4X'
+    # crop_image_and_annotation(orginal_yolo_path, output_dir, 4, 'train')
+    # crop_image_and_annotation(orginal_yolo_path, output_dir, 4, 'val')
+    # # draw_zoom_results(output_dir)
